@@ -62,11 +62,11 @@ function setup() {
 
 function draw() {
 
-  
+
   clear();
   drawBackground();
   drawVoronoi();
-  
+
   drawHeader();
   drawInfo();
 }
@@ -150,17 +150,38 @@ function drawHeader() {
  *****************************************
  *****************************************
  */
- 
- function initializeInfo() {
+
+function initializeInfo() {
 
 
 }
 
 function drawInfo() {
-  
-  
+
+
+  fill(200);
+  rect(30, windowHeight - 30, windowWidth - 60, 10);
+  fill(20);
+
+
+  var rectW = mouseX;
+
+  if (rectW < 30) {
+    rectW = 0;
+  } else if (rectW > windowWidth - 30) {
+    rectW = windowWidth - 60;
+  } else {
+    rectW = rectW - 30;
+  }
+
+  textFont(geoMidFont);
+  textSize(26);
+  text("1950", rectW, windowHeight - 80);
+
+  rect(30, windowHeight - 30, rectW, 10);
+
 }
- 
+
 
 /*
  *****************************************
