@@ -18,9 +18,15 @@
 
 var points = [];
 var triangles = [];
+var pointsL1 = [];
 
-
+// Background
 var backgroundImage;
+
+
+// Font
+var geoMidFont
+var geoSmallFont;
 
 /*
  *****************************************
@@ -34,11 +40,18 @@ var backgroundImage;
 function preload() {
   // Backgrund
   backgroundImage = loadImage("assets/images/CDMX_Template.png");
+
+
+  // Fuemtes
+  geoMidFont = loadFont('assets/fonts/Geogtq-Md.otf');
+  geoSmallFont = loadFont('assets/fonts/Geogtq-Ul.otf');
 }
 
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
+  resetVoronoi();
+  initializeVoronoi();
 }
 
 
@@ -49,8 +62,13 @@ function setup() {
 
 function draw() {
 
+  
+  clear();
   drawBackground();
   drawVoronoi();
+  
+  drawHeader();
+  drawInfo();
 }
 
 /*
@@ -63,6 +81,10 @@ function draw() {
 
 function initialize() {
 
+
+  initializeMetroLines();
+  initializeHeader();
+  initializeInfo();
   initializeBackground();
   initializeVoronoi();
 
@@ -91,7 +113,54 @@ function drawBackground() {
 
 }
 
+/*
+ *****************************************
+ *****************************************
+ * HEADER METHODS
+ *****************************************
+ *****************************************
+ */
 
+
+function initializeHeader() {
+
+
+}
+
+function drawHeader() {
+
+  fill(0);
+  textAlign(LEFT, TOP);
+  noStroke();
+  //Title
+  textFont(geoMidFont);
+  textSize(30);
+  text("Metro CDMX", 30, 20);
+
+  //Subtitle
+  textFont(geoSmallFont);
+  textSize(20);
+  text("Distribución de zonas dependiendo su cercanía a alguna estación del Metro", 30, 60, (windowWidth / 2) - 50, windowHeight);
+}
+
+/*
+ *****************************************
+ *****************************************
+ * INFO METHODS
+ *****************************************
+ *****************************************
+ */
+ 
+ function initializeInfo() {
+
+
+}
+
+function drawInfo() {
+  
+  
+}
+ 
 
 /*
  *****************************************
@@ -102,7 +171,22 @@ function drawBackground() {
  */
 
 
+function resetVoronoi() {
+
+  if (points.length > 0) {
+    points.length = 0;
+  }
+
+  if (triangles.length > 0) {
+    triangles.length = 0;
+  }
+
+
+}
+
 function initializeVoronoi() {
+
+
   points[0] = new Point(0, 0);
   points[1] = new Point(windowWidth, 0);
   points[2] = new Point(0, windowHeight);
@@ -118,6 +202,11 @@ function initializeVoronoi() {
   points[2].triangles.push(1);
   points[3].triangles.push(1);
 
+
+  for (var i = 0; i < pointsL1.length; i++) {
+    addPoint(windowWidth / 2 - pointsL1[i].x, windowHeight / 2 - pointsL1[i].y);
+  }
+
 }
 
 
@@ -126,13 +215,13 @@ function drawVoronoi() {
   //background(100);
 
   stroke(0);
-  strokeWeight(3);
+  //strokeWeight(3);
   for (var i = 0; i < points.length; i++) {
     points[i].draw();
   }
 
   strokeWeight(1);
-  fill(255, 100);
+  //fill(255, 100);
   for (var i = 0; i < triangles.length; i++) {
     triangles[i].draw();
   }
@@ -233,6 +322,21 @@ function Angle(A, B) {
   return createVector(A.x, A.y).sub(createVector(B.x, B.y)).heading();
 }
 
+/*
+ *****************************************
+ *****************************************
+ * METRO LINES METHODS
+ *****************************************
+ *****************************************
+ */
+
+
+function initializeMetroLines() {
+
+  //Line 1
+  pointsL1.push(createVector(98, 197));
+  pointsL1.push(createVector(-25, -97));
+}
 
 
 
@@ -250,9 +354,15 @@ function keyPressed() {
   return false;
 }
 
+function mouseMoved() {
+  var normalizedX = map(mouseX, 0, windowWidth, 0, 1);
+  //print(normalizedX);
+}
+
 
 function mouseClicked() {
-addPoint(mouseX,mouseY);
+  //addPoint(mouseX,mouseY);
+  print(((windowWidth / 2) - mouseX) + " :: " + mouseX + " , " + ((windowHeight / 2) - mouseY) + " :: " + mouseY);
 
 
 }

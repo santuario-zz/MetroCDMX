@@ -64,8 +64,10 @@ Point.prototype.draw = function(){
     this.cell[i] = createVector(triangles[this.triangles[i]].circumcircle().x,triangles[this.triangles[i]].circumcircle().y);
   }
   this.cell = convexHull(this.cell);
-  strokeWeight(3);
-  fill(floor(random(255)),floor(random(100,255)),floor(random(255)));
+  strokeWeight(2);
+	
+  //fill(floor(random(255)),floor(random(100,255)),floor(random(255)));
+  fill(235,42,95,100);
   stroke(0);
   beginShape();
   if(this.cell.length>=3)
