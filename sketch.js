@@ -23,6 +23,9 @@ var pointsL1 = [];
 // Background
 var backgroundImage;
 
+// Info
+var yearString;
+
 
 // Font
 var geoMidFont
@@ -153,7 +156,7 @@ function drawHeader() {
 
 function initializeInfo() {
 
-
+  yearString = "1969";
 }
 
 function drawInfo() {
@@ -174,9 +177,11 @@ function drawInfo() {
     rectW = rectW - 30;
   }
 
+  yearString = floor(map(rectW, 0, windowWidth - 60, 1969, 2018)).toString();
+
   textFont(geoMidFont);
   textSize(26);
-  text("1950", rectW, windowHeight - 80);
+  text(yearString, rectW, windowHeight - 80);
 
   rect(30, windowHeight - 30, rectW, 10);
 
@@ -208,10 +213,10 @@ function resetVoronoi() {
 function initializeVoronoi() {
 
 
-  points[0] = new Point(0, 0);
-  points[1] = new Point(windowWidth, 0);
-  points[2] = new Point(0, windowHeight);
-  points[3] = new Point(windowWidth, windowHeight);
+  points[0] = new Point(0, 0,0);
+  points[1] = new Point(windowWidth, 0,0);
+  points[2] = new Point(0, windowHeight,0);
+  points[3] = new Point(windowWidth, windowHeight,0);
 
 
   triangles[0] = new Triangle(0, 1, 2);
@@ -225,7 +230,7 @@ function initializeVoronoi() {
 
 
   for (var i = 0; i < pointsL1.length; i++) {
-    addPoint(windowWidth / 2 - pointsL1[i].x, windowHeight / 2 - pointsL1[i].y);
+    addPoint(windowWidth / 2 - pointsL1[i].x, windowHeight / 2 - pointsL1[i].y,1);
   }
 
 }
@@ -256,8 +261,8 @@ function dist2(A, B) {
   return Ax * Ax + Ay * Ay;
 }
 
-function addPoint(x, y) {
-  points.push(new Point(x, y));
+function addPoint(x, y, id) {
+  points.push(new Point(x, y, id));
   var t = [];
   var edgeA = [];
   var edgeB = [];
@@ -354,9 +359,19 @@ function Angle(A, B) {
 
 function initializeMetroLines() {
 
-  //Line 1
+  //Line 1 1969
   pointsL1.push(createVector(98, 197));
   pointsL1.push(createVector(-25, -97));
+  //Line 2 1970
+  //Line 3 1969
+  //Line 4 1969
+  //Line 5 1969
+  //Line 6 1969
+  //Line 7 1969
+  //Line 8 1969
+  //Line 9 1969
+  //Line A 1969
+  //Line B 1969
 }
 
 
@@ -377,12 +392,14 @@ function keyPressed() {
 
 function mouseMoved() {
   var normalizedX = map(mouseX, 0, windowWidth, 0, 1);
+
+
   //print(normalizedX);
 }
 
 
 function mouseClicked() {
-  //addPoint(mouseX,mouseY);
+  //addPoint(mouseX, mouseY,2);
   print(((windowWidth / 2) - mouseX) + " :: " + mouseX + " , " + ((windowHeight / 2) - mouseY) + " :: " + mouseY);
 
 
