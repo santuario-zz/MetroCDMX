@@ -83,12 +83,10 @@ function draw() {
 
   clear();
 
-  if (width < 320) {
-    drawMobileBackground();
-  } else {
-    drawBackground();
-    drawVoronoi();
-  }
+
+  drawBackground();
+  drawVoronoi();
+
 
 
 
@@ -223,16 +221,12 @@ function drawInfo() {
 
 
 
-  if (width < 320) {
-    textFont(geoSmallFont);
-    textSize(20);
-    text("Version Interactiva solo en Desktop", 30, windowHeight - 180, (windowWidth / 2) - 50, windowHeight);
-  } else {
-    textFont(geoMidFont);
-    textSize(26);
-    text(yearString, rectW, windowHeight - 80);
-    rect(30, windowHeight - 30, rectW, 6);
-  }
+
+  textFont(geoMidFont);
+  textSize(26);
+  text(yearString, rectW, windowHeight - 80);
+  rect(30, windowHeight - 30, rectW, 6);
+
 
 
 
@@ -250,18 +244,18 @@ function drawInfo() {
 
 function resetVoronoi() {
 
-  points = [];
-  triangles = [];
+  //points = [];
+  //triangles = [];
 
-  /*
-    if (points.length > 0) {
-      points.length = 0;
-    }
 
-    if (triangles.length > 0) {
-      triangles.length = 0;
-    }
-  */
+  if (points.length > 0) {
+    points.length = 0;
+  }
+
+  if (triangles.length > 0) {
+    triangles.length = 0;
+  }
+
 
 
 }
