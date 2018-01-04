@@ -7,11 +7,31 @@ function Point(_x, _y, _id) {
   this.currentColor;
 
   if (this.id == 0) {
-    this.currentColor = color(235, 42, 95, random(50, 200));
+    this.currentColor = color(235, 42, 95, 0);
   } else if (this.id == 1) {
-    this.currentColor = color(42, 235, 95, random(50, 200));
+    this.currentColor = color(245, 77, 150, random(50, 200));
   } else if (this.id == 2) {
-    this.currentColor = color(95, 42, 235, random(50, 200));
+    this.currentColor = color(0, 112, 179, random(50, 200));
+  } else if (this.id == 3) {
+    this.currentColor = color(182, 156, 52, random(50, 200));
+  } else if (this.id == 4) {
+    this.currentColor = color(53, 186, 175, random(50, 200));
+  } else if (this.id == 5) {
+    this.currentColor = color(255, 207, 71, random(50, 200));
+  } else if (this.id == 6) {
+    this.currentColor = color(251, 0, 31, random(50, 200));
+  } else if (this.id == 7) {
+    this.currentColor = color(255, 113, 46, random(50, 200));
+  } else if (this.id == 8) {
+    this.currentColor = color(0, 162, 101, random(50, 200));
+  } else if (this.id == 9) {
+    this.currentColor = color(105, 39, 38, random(50, 200));
+  } else if (this.id == 10) {
+    this.currentColor = color(143, 44, 117, random(50, 200));
+  } else if (this.id == 11) {
+    this.currentColor = color(177, 179, 178, random(50, 200));
+  } else if (this.id == 12) {
+    this.currentColor = color(196, 156, 83, random(50, 200));
   }
 
 
@@ -28,7 +48,7 @@ function Point(_x, _y, _id) {
       this.cell[i] = createVector(triangles[this.triangles[i]].circumcircle().x, triangles[this.triangles[i]].circumcircle().y);
     }
     this.cell = convexHull(this.cell);
-    strokeWeight(2);
+    strokeWeight(1);
 
 
     fill(this.currentColor);
@@ -48,7 +68,7 @@ function Point(_x, _y, _id) {
     noStroke();
     fill(255);
     //text(this.triangles,this.x,this.y);
-    strokeWeight(10);
+    strokeWeight(8);
     stroke(0);
     point(this.x, this.y);
   }

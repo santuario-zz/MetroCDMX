@@ -35,10 +35,11 @@ Triangle.prototype.CalcCircumcircle = function() {
 }
 
 Triangle.prototype.draw = function() {
-  noFill();
+  /*noFill();
   strokeWeight(1);
   stroke(0, 100);
   triangle(points[this.vert[0]].x, points[this.vert[0]].y, points[this.vert[1]].x, points[this.vert[1]].y, points[this.vert[2]].x, points[this.vert[2]].y);
+  */
   //noFill();
   //stroke(255,0,0);
   //ellipse(this.circumcircle().x,this.circumcircle().y,2*sqrt(this.r),2*sqrt(this.r));
