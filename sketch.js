@@ -55,7 +55,7 @@ var geoSmallFont;
 
 function preload() {
   // Backgrund
-  //backgroundImage = loadImage("assets/images/CDMX_Template.png");
+  backgroundImage = loadImage("assets/images/CDMX_Template_Support_Mobile.png");
   backgroundImageSupport = loadImage("assets/images/CDMX_Template_Support_0.png");
   backgroundImageSupportM = loadImage("assets/images/CDMX_Template_Support_M.png");
 
@@ -82,8 +82,16 @@ function draw() {
 
 
   clear();
-  drawBackground();
-  drawVoronoi();
+
+  if (width < 320) {
+    drawMobileBackground();
+  } else {
+    drawBackground();
+    drawVoronoi();
+  }
+
+
+
 
   drawHeader();
   drawInfo();
@@ -125,10 +133,14 @@ function initializeBackground() {
 }
 
 
+function drawMobileBackground() {
+  var correctionX = (windowWidth / 2) - (backgroundImage.width / 2);
+  var correctionY = (windowHeight / 2) - (backgroundImage.height / 2);
+  image(backgroundImage, correctionX, correctionY);
+}
+
 function drawBackground() {
-  //var correctionX = (windowWidth / 2) - (backgroundImage.width / 2);
-  //var correctionY = (windowHeight / 2) - (backgroundImage.height / 2);
-  //image(backgroundImage, correctionX, correctionY);
+
 
   var correctionXS = (windowWidth / 2) - (backgroundImageSupport.width / 2);
   var correctionYS = (windowHeight / 2) - (backgroundImageSupport.height / 2);
@@ -208,11 +220,21 @@ function drawInfo() {
 
   yearString = floor(map(rectW, 0, windowWidth - 60, 1965, 2018)).toString();
 
-  textFont(geoMidFont);
-  textSize(26);
-  text(yearString, rectW, windowHeight - 80);
 
-  rect(30, windowHeight - 30, rectW, 6);
+
+
+  if (width < 320) {
+    textFont(geoSmallFont);
+    textSize(20);
+    text("Version Interactiva solo en Desktop", 30, windowHeight - 180, (windowWidth / 2) - 50, windowHeight);
+  } else {
+    textFont(geoMidFont);
+    textSize(26);
+    text(yearString, rectW, windowHeight - 80);
+    rect(30, windowHeight - 30, rectW, 6);
+  }
+
+
 
 }
 
