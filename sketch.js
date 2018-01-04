@@ -55,7 +55,7 @@ var geoSmallFont;
 
 function preload() {
   // Backgrund
-  backgroundImage = loadImage("assets/images/CDMX_Template_Support_Mobile.png");
+  // = loadImage("assets/images/CDMX_Template_Support_Mobile.png");
   backgroundImageSupport = loadImage("assets/images/CDMX_Template_Support_0.png");
   backgroundImageSupportM = loadImage("assets/images/CDMX_Template_Support_M.png");
 
@@ -131,11 +131,6 @@ function initializeBackground() {
 }
 
 
-function drawMobileBackground() {
-  var correctionX = (windowWidth / 2) - (backgroundImage.width / 2);
-  var correctionY = (windowHeight / 2) - (backgroundImage.height / 2);
-  image(backgroundImage, correctionX, correctionY);
-}
 
 function drawBackground() {
 
@@ -748,7 +743,7 @@ function mouseMoved() {
 function mouseClicked() {
   // addPoint(mouseX, mouseY, 1);
 
-  print(((windowWidth / 2) - mouseX) + " :: " + mouseX + " , " + ((windowHeight / 2) - mouseY) + " :: " + mouseY);
+  //print(((windowWidth / 2) - mouseX) + " :: " + mouseX + " , " + ((windowHeight / 2) - mouseY) + " :: " + mouseY);
 
 
 }
